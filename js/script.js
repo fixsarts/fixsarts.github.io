@@ -24,14 +24,15 @@ function switchTab(name, btn) {
 const audio = document.getElementById('bgMusic');
 const btn = document.getElementById('toggleMusic');
 
+
 if (btn && audio) {
   btn.addEventListener('click', () => {
     if (audio.paused) {
       audio.play();
-      btn.textContent = '🔇 Hentikan Musik';
+      btn.textContent = '❚❚ Hentikan Musik';
     } else {
       audio.pause();
-      btn.textContent = '🎵 Putar Musik';
+      btn.textContent = '▶ Putar Musik';
     }
   });
 }
