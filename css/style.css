@@ -9,8 +9,8 @@
 
 :root {
   --bg:       #050505;
-  --surface:  #111216;
-  --surface2: #1a1c20;
+  --surface:  #0d0d0f;
+  --surface2: #080808;
   --border:   rgba(255, 255, 255, 0.08);
   --text:     #e5e7eb;
   --muted:    #7a838f;
@@ -225,6 +225,46 @@ body {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.verified:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(29, 155, 240, 0.5);
+}
+
+.verified::after {
+  content: 'Verified';
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(29, 155, 240, 0.95);
+  color: #ffffff;
+  padding: 6px 6px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(29, 155, 240, 0.3);
+}
+
+
+
+.verified:hover::after,
+.verified:focus::after {
+  opacity: 1;
+}
+
+.verified:hover::before,
+.verified:focus::before {
+  opacity: 1;
 }
 
 .verified img {
@@ -556,6 +596,7 @@ footer {
   align-items: center;
   animation: marquee 12s linear infinite;
   padding: 20px 0;
+  
 }
 
 .partner-logo {
@@ -569,9 +610,8 @@ footer {
 
 .partner-logo img {
   max-height:40px;
-  max-width: auto
+  max-width: auto;
   object-fit: contain;
-  !filter: brightness(0) invert(1);!
 }
 
 footer p,
@@ -598,7 +638,7 @@ footer a:hover {
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
 }
 
