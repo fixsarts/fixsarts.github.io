@@ -29,7 +29,7 @@ if (btn && audio) {
   btn.addEventListener('click', () => {
     if (audio.paused) {
       audio.play();
-      btn.textContent = '❚❚ Hentikan Musik';
+      btn.textContent = '⏸ Hentikan Musik';
     } else {
       audio.pause();
       btn.textContent = '▶ Putar Musik';
