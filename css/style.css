@@ -273,14 +273,14 @@ body {
 }
 
 .bio-username {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
   margin-top: 2px;
   letter-spacing: 0.01em;
 }
 
 .bio-work {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--text);
   margin-top: 8px;
@@ -290,7 +290,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--accent);
   text-decoration: none;
   margin-top: 6px;
