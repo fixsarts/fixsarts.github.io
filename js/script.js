@@ -36,3 +36,41 @@ if (btn && audio) {
     }
   });
 }
+
+const previewModal = document.getElementById('previewModal');
+const openPreviewBtn = document.getElementById('openPdfPreview');
+const closePreviewBtn = document.getElementById('closePreview');
+const pdfPreviewFrame = document.getElementById('pdfPreviewFrame');
+const examplePdfUrl = 'assets/pdf/ESJ%20Project.pdf';
+
+function openPdfPreview(event) {
+  event.preventDefault();
+  if (!previewModal || !pdfPreviewFrame) return;
+
+  pdfPreviewFrame.src = examplePdfUrl;
+  previewModal.classList.add('active');
+  document.body.classList.add('modal-open');
+  previewModal.setAttribute('aria-hidden', 'false');
+}
+
+function closePdfPreview() {
+  if (!previewModal || !pdfPreviewFrame) return;
+
+  previewModal.classList.remove('active');
+  document.body.classList.remove('modal-open');
+  previewModal.setAttribute('aria-hidden', 'true');
+  pdfPreviewFrame.src = '';
+}
+
+openPreviewBtn?.addEventListener('click', openPdfPreview);
+closePreviewBtn?.addEventListener('click', closePdfPreview);
+previewModal?.addEventListener('click', (event) => {
+  if (event.target === previewModal) {
+    closePdfPreview();
+  }
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && previewModal?.classList.contains('active')) {
+    closePdfPreview();
+  }
+});
