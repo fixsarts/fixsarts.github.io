@@ -77,9 +77,9 @@
     </a>
 
     <!-- Link buttons -->
-    <a href="#" class="link-btn">
+    <a href="#" class="link-btn" id="openPdfPreview">
       <div class="link-btn-inner">
-        <div class="link-icon" style="color:#7f8c99;"></div>
+        <div class="link-icon" style="color:#7f8c99;">🖿</div>
         <div>
           <div class="link-label">Document</div>
           <div class="link-sub">Lihat dokumen saya</div>
@@ -134,7 +134,7 @@
   <!-- SHOP SECTION -->
   <div class="section" id="tab-shop">
     <div class="shop-grid">
-      <a href="#" class="shop-item">
+      <a href="assets/pdf/ESJ%20Project.pdf" class="shop-item">
         <div class="shop-thumb"> <img src="assets/icon/Logo.jpg" width="100%"> </div>
         <div class="shop-info">
           <div class="shop-name">Logo</div>
@@ -220,8 +220,27 @@
   </audio>
 
   <button id="toggleMusic" style="position: fixed; bottom: 15px; right: 15px; z-index: 1000; padding: 12px 18px; background: var(--accent); color: #0a0a0a; border: none; border-radius: 50px; cursor: pointer; font-weight: 500; font-size: 14px;">
-    ❚❚ Hentikan Musik
+    ▶ Play Musik
   </button>
+
+  <div class="modal-overlay" id="previewModal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+      <button class="modal-close" id="closePreview" aria-label="Tutup preview">×</button>
+      <div class="modal-header">
+        <div>
+          <h2 id="previewTitle">Preview Document PDF</h2>
+          <p class="modal-desc">Tampilan dokumen dalam popup. Klik di luar atau tekan Esc untuk menutup.</p>
+        </div>
+      </div>
+      <div class="pdf-wrapper">
+        <iframe id="pdfPreviewFrame" src="" frameborder="0" loading="lazy" title="Preview PDF"></iframe>
+      </div>
+      <div class="modal-actions">
+        <a id="previewDownload" class="modal-action modal-download" href="assets/pdf/ESJ%20Project.pdf" download>Unduh PDF</a>
+        <a id="previewOpen" class="modal-action modal-open" href="assets/pdf/ESJ%20Project.pdf" target="_blank" rel="noopener">Buka di tab baru</a>
+      </div>
+    </div>
+  </div>
 
   <script src="js/script.js"></script>
 </body>
