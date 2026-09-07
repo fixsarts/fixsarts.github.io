@@ -15,7 +15,7 @@
   </style>
 </head>
 <body>
-
+ 
   <!-- COVER -->
   <div class="cover">
       <img src="assets/img/Cover 480x220px.jpg" alt="Sampul"> 
@@ -62,6 +62,7 @@
   <div class="tabs">
     <button class="tab active" onclick="switchTab('links', this)">Links</button>
     <button class="tab" onclick="switchTab('shop', this)">Shop</button>
+    <button class="tab" onclick="switchTab('catalog', this)">Catalog</button>
   </div>
 
   <!-- LINKS SECTION -->
@@ -179,6 +180,113 @@
     </div>
   </div>
 
+  <!-- CATALOG SECTION -->
+  <div class="section" id="tab-catalog">
+    <div class="catalog-layout-selector">
+      <button class="layout-btn active" onclick="setCatalogLayout('grid-2')">Grid 2x</button>
+      <button class="layout-btn" onclick="setCatalogLayout('grid-1')">Grid 1x</button>
+      <button class="layout-btn" onclick="setCatalogLayout('list')">List</button>
+    </div>
+    
+    <div class="catalog-grid" id="catalogGrid">
+      <!-- Catalog Item 1 -->
+      <div class="catalog-item">
+        <div class="catalog-thumb">
+          <img src="assets/icon/Logo.jpg" alt="Desain Logo Profesional">
+          <span class="catalog-badge">Design</span>
+        </div>
+        <div class="catalog-content">
+          <h3 class="catalog-title">Logo Profesional</h3>
+          <p class="catalog-desc">Desain logo yang modern dan mudah diingat untuk brand Anda dengan konsep kreatif</p>
+          <div class="catalog-meta">
+            <span class="catalog-date">2026</span>
+            <span class="catalog-type">Design</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Catalog Item 2 -->
+      <div class="catalog-item">
+        <div class="catalog-thumb">
+          <img src="assets/icon/Banner.jpg" alt="Banner Kreatif">
+          <span class="catalog-badge">Marketing</span>
+        </div>
+        <div class="catalog-content">
+          <h3 class="catalog-title">Banner Marketing</h3>
+          <p class="catalog-desc">Banner eye-catching untuk media sosial dan website yang menarik perhatian audience Anda</p>
+          <div class="catalog-meta">
+            <span class="catalog-date">2026</span>
+            <span class="catalog-type">Banner</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Catalog Item 3 -->
+      <div class="catalog-item">
+        <div class="catalog-thumb">
+          <img src="assets/icon/Card.jpg" alt="Kartu Nama Elegan">
+          <span class="catalog-badge">Branding</span>
+        </div>
+        <div class="catalog-content">
+          <h3 class="catalog-title">Kartu Nama Elegan</h3>
+          <p class="catalog-desc">Desain kartu nama yang profesional dan berkesan untuk identitas bisnis Anda yang berkelas</p>
+          <div class="catalog-meta">
+            <span class="catalog-date">2026</span>
+            <span class="catalog-type">Card</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Catalog Item 4 -->
+      <div class="catalog-item">
+        <div class="catalog-thumb">
+          <img src="assets/icon/Flayer.jpg" alt="Flyer Promosi">
+          <span class="catalog-badge">Promotion</span>
+        </div>
+        <div class="catalog-content">
+          <h3 class="catalog-title">Flyer Promosi</h3>
+          <p class="catalog-desc">Flyer menarik dengan desain modern yang efektif untuk kampanye promosi Anda</p>
+          <div class="catalog-meta">
+            <span class="catalog-date">2026</span>
+            <span class="catalog-type">Flyer</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Catalog Item 5 -->
+      <div class="catalog-item">
+        <div class="catalog-thumb">
+          <img src="assets/icon/Lanyard.jpg" alt="Merchandise Lanyard">
+          <span class="catalog-badge">Merchandise</span>
+        </div>
+        <div class="catalog-content">
+          <h3 class="catalog-title">Lanyard Custom</h3>
+          <p class="catalog-desc">Lanyard berkualitas tinggi dengan desain custom yang sempurna untuk merchandise brand Anda</p>
+          <div class="catalog-meta">
+            <span class="catalog-date">2026</span>
+            <span class="catalog-type">Merchandise</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Catalog Item 6 -->
+      <div class="catalog-item">
+        <div class="catalog-thumb">
+          <img src="assets/icon/Bintang.jpg" alt="Desain Lainnya">
+          <span class="catalog-badge">Creative</span>
+        </div>
+        <div class="catalog-content">
+          <h3 class="catalog-title">Desain Custom</h3>
+          <p class="catalog-desc">Desain unik dan custom sesuai kebutuhan Anda dengan konsep kreatif dan inovatif</p>
+          <div class="catalog-meta">
+            <span class="catalog-date">2026</span>
+            <span class="catalog-type">Custom</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer>
     <div class="footer-partners">
@@ -219,7 +327,7 @@
     <source src="assets/music/One Of The Girls X Good For You.mp3" type="audio/mpeg">
   </audio>
 
-  <button id="toggleMusic" style="position: fixed; bottom: 15px; right: 15px; z-index: 1000; padding: 12px 18px; background: var(--accent); color: #0a0a0a; border: none; border-radius: 50px; cursor: pointer; font-weight: 500; font-size: 14px;">
+  <button id="toggleMusic" style="position: fixed; bottom: 15px; right: 15px; z-index: 1000; padding: 12px 18px; background: var(--accent); color: #0a0a0a; border: none; border-radius: 50px; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.2s;">
     ▶ Play Musik
   </button>
 
