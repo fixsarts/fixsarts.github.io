@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fixs.arts studio - Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #050505;
+      --surface: #0d0d0f;
+      --surface2: #080808;
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #e5e7eb;
+      --muted: #7a838f;
+      --accent: #7f8c99;
+      --white: #ffffff;
+      --success: #10b981;
+      --error: #ef4444;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ════════════════════════════════════
+       LOGIN SCREEN
+    ════════════════════════════════════ */
+    .login-screen {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 9999;
+    }
+
+    .login-screen.hidden {
+      display: none;
+    }
+
+    .login-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-box h1 {
+      font-size: 24px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(127, 140, 153, 0.2);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--accent);
+      color: #0a0a0a;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 14px;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-danger {
+      background: var(--error);
+      margin-top: 10px;
+    }
+
+    .error-msg {
+      color: var(--error);
+      font-size: 13px;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    /* ════════════════════════════════════
+       ADMIN DASHBOARD
+    ════════════════════════════════════ */
+    .admin-dashboard {
+      display: none;
+    }
+
+    .admin-dashboard.active {
+      display: block;
+    }
+
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .admin-header h1 {
+      font-size: 28px;
+    }
+
+    .admin-header button {
+      background: var(--error);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .admin-header button:hover {
+      opacity: 0.9;
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .admin-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .admin-panel h2 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+
+    .upload-area {
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 30px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 20px;
+    }
+
+    .upload-area:hover {
+      border-color: var(--accent);
+      background: rgba(127, 140, 153, 0.05);
+    }
+
+    .upload-area.dragover {
+      border-color: var(--accent);
+      background: rgba(127, 140, 153, 0.1);
+    }
+
+    .upload-area input {
+      display: none;
+    }
+
+    .upload-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .upload-text {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .form-row.full {
+      grid-template-columns: 1fr;
+    }
+
+    .form-group {
+      margin-bottom: 0;
+    }
+
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      resize: vertical;
+      min-height: 100px;
+      transition: all 0.2s;
+    }
+
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(127, 140, 153, 0.2);
+    }
+
+    .btn-submit {
+      background: var(--success);
+      color: #0a0a0a;
+      width: 100%;
+    }
+
+    /* ════════════════════════════════════
+       CATALOG LIST
+    ════════════════════════════════════ */
+    .catalog-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    .catalog-item-admin {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 15px;
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+    }
+
+    .catalog-item-admin img {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .catalog-item-admin-content {
+      flex: 1;
+    }
+
+    .catalog-item-admin-content h3 {
+      font-size: 14px;
+      margin-bottom: 4px;
+      color: var(--white);
+    }
+
+    .catalog-item-admin-content p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .catalog-item-admin-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-small {
+      padding: 6px 12px;
+      font-size: 12px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-small:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-small.delete {
+      color: var(--error);
+      border-color: var(--error);
+    }
+
+    .btn-small.delete:hover {
+      background: var(--error);
+      color: white;
+    }
+
+    .status-message {
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      animation: slideDown 0.3s ease;
+    }
+
+    .status-message.success {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--success);
+      color: var(--success);
+    }
+
+    .status-message.error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid var(--error);
+      color: var(--error);
+    }
+
+    .status-message.loading {
+      background: rgba(127, 140, 153, 0.1);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .login-box {
+        padding: 30px 20px;
+      }
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(127, 140, 153, 0.3);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOGIN SCREEN -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-box">
+      <h1>🔐 Admin Panel</h1>
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Admin Password</label>
+          <input 
+            type="password" 
+            id="adminPassword" 
+            placeholder="Masukkan password admin"
+            autocomplete="off"
+          >
+        </div>
+        <button type="submit" class="btn">Login</button>
+        <div class="error-msg" id="loginError"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD -->
+  <div class="admin-dashboard" id="adminDashboard">
+    <div class="container">
+      <div class="admin-header">
+        <div>
+          <h1>📊 Katalog Admin</h1>
+          <p style="color: var(--muted); margin-top: 5px;">Kelola katalog desain Anda</p>
+        </div>
+        <button onclick="logout()">Logout</button>
+      </div>
+
+      <div class="admin-grid">
+        <!-- Panel Tambah Item -->
+        <div class="admin-panel">
+          <h2>➕ Tambah Item Katalog</h2>
+          
+          <div id="uploadStatus"></div>
+
+          <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📸</div>
+            <div class="upload-text">Drag & drop gambar di sini<br>atau klik untuk browse</div>
+            <input type="file" id="imageInput" accept="image/*">
+          </div>
+
+          <div id="imagePreview" style="display: none; margin-bottom: 20px;">
+            <img id="previewImg" style="width: 100%; border-radius: 8px; max-height: 300px; object-fit: cover;">
+          </div>
+
+          <form id="catalogForm">
+            <div class="form-row full">
+              <div class="form-group">
+                <label>Judul Item</label>
+                <input type="text" id="itemTitle" placeholder="Contoh: Logo Profesional" required>
+              </div>
+            </div>
+
+            <div class="form-row full">
+              <div class="form-group">
+                <label>Deskripsi</label>
+                <textarea id="itemDesc" placeholder="Deskripsi singkat tentang item ini" required></textarea>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Tahun</label>
+                <input type="text" id="itemYear" placeholder="2026" value="2026">
+              </div>
+              <div class="form-group">
+                <label>Kategori</label>
+                <input type="text" id="itemType" placeholder="Design, Marketing, dll" required>
+              </div>
+            </div>
+
+            <div class="form-row full">
+              <div class="form-group">
+                <label>Badge/Tag</label>
+                <input type="text" id="itemBadge" placeholder="Design, Branding, dll" required>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-submit">✓ Tambah Ke Katalog</button>
+          </form>
+        </div>
+
+        <!-- Panel Daftar Item -->
+        <div class="admin-panel">
+          <h2>📋 Daftar Item Katalog</h2>
+          <div class="catalog-list" id="catalogList">
+            <p style="color: var(--muted); text-align: center; padding: 20px;">
+              Memuat data katalog...
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
