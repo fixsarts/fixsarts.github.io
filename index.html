@@ -35,7 +35,6 @@
           <line x1="12" y1="5" x2="12" y2="19"/>
           <line x1="5" y1="12" x2="19" y2="12"/>
         </svg>
-        
       </a>
     </div>
 
@@ -117,19 +116,6 @@
       </svg>
     </a>
 
-    <a href="#" class="link-btn hidden">
-      <div class="link-btn-inner">
-        <div class="link-icon">💬</div>
-        <div>
-          <div class="link-label">Hubungi Saya</div>
-          <div class="link-sub">Open for collaboration</div>
-        </div>
-      </div>
-      <svg class="link-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M5 12h14M12 5l7 7-7 7"/>
-      </svg>    
-    </a>
-
   </div>
 
   <!-- SHOP SECTION -->
@@ -185,105 +171,11 @@
     <div class="catalog-layout-selector">
       <button class="layout-btn active" onclick="setCatalogLayout('grid-2')">Grid 2x</button>
       <button class="layout-btn" onclick="setCatalogLayout('grid-1')">Grid 1x</button>
-      <button class="layout-btn" onclick="setCatalogLayout('list')">List</button>
+      <button class="layout-btn" onclick="setCatalogLayout('showcase')">Showcase</button>
     </div>
     
-    <div class="catalog-grid" id="catalogGrid">
-      <!-- Catalog Item 1 -->
-      <div class="catalog-item">
-        <div class="catalog-thumb">
-          <img src="assets/icon/Logo.jpg" alt="Desain Logo Profesional">
-          <span class="catalog-badge">Design</span>
-        </div>
-        <div class="catalog-content">
-          <h3 class="catalog-title">Logo Profesional</h3>
-          <p class="catalog-desc">Desain logo yang modern dan mudah diingat untuk brand Anda dengan konsep kreatif</p>
-          <div class="catalog-meta">
-            <span class="catalog-date">2026</span>
-            <span class="catalog-type">Design</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Catalog Item 2 -->
-      <div class="catalog-item">
-        <div class="catalog-thumb">
-          <img src="assets/icon/Banner.jpg" alt="Banner Kreatif">
-          <span class="catalog-badge">Marketing</span>
-        </div>
-        <div class="catalog-content">
-          <h3 class="catalog-title">Banner Marketing</h3>
-          <p class="catalog-desc">Banner eye-catching untuk media sosial dan website yang menarik perhatian audience Anda</p>
-          <div class="catalog-meta">
-            <span class="catalog-date">2026</span>
-            <span class="catalog-type">Banner</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Catalog Item 3 -->
-      <div class="catalog-item">
-        <div class="catalog-thumb">
-          <img src="assets/icon/Card.jpg" alt="Kartu Nama Elegan">
-          <span class="catalog-badge">Branding</span>
-        </div>
-        <div class="catalog-content">
-          <h3 class="catalog-title">Kartu Nama Elegan</h3>
-          <p class="catalog-desc">Desain kartu nama yang profesional dan berkesan untuk identitas bisnis Anda yang berkelas</p>
-          <div class="catalog-meta">
-            <span class="catalog-date">2026</span>
-            <span class="catalog-type">Card</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Catalog Item 4 -->
-      <div class="catalog-item">
-        <div class="catalog-thumb">
-          <img src="assets/icon/Flayer.jpg" alt="Flyer Promosi">
-          <span class="catalog-badge">Promotion</span>
-        </div>
-        <div class="catalog-content">
-          <h3 class="catalog-title">Flyer Promosi</h3>
-          <p class="catalog-desc">Flyer menarik dengan desain modern yang efektif untuk kampanye promosi Anda</p>
-          <div class="catalog-meta">
-            <span class="catalog-date">2026</span>
-            <span class="catalog-type">Flyer</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Catalog Item 5 -->
-      <div class="catalog-item">
-        <div class="catalog-thumb">
-          <img src="assets/icon/Lanyard.jpg" alt="Merchandise Lanyard">
-          <span class="catalog-badge">Merchandise</span>
-        </div>
-        <div class="catalog-content">
-          <h3 class="catalog-title">Lanyard Custom</h3>
-          <p class="catalog-desc">Lanyard berkualitas tinggi dengan desain custom yang sempurna untuk merchandise brand Anda</p>
-          <div class="catalog-meta">
-            <span class="catalog-date">2026</span>
-            <span class="catalog-type">Merchandise</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Catalog Item 6 -->
-      <div class="catalog-item">
-        <div class="catalog-thumb">
-          <img src="assets/icon/Bintang.jpg" alt="Desain Lainnya">
-          <span class="catalog-badge">Creative</span>
-        </div>
-        <div class="catalog-content">
-          <h3 class="catalog-title">Desain Custom</h3>
-          <p class="catalog-desc">Desain unik dan custom sesuai kebutuhan Anda dengan konsep kreatif dan inovatif</p>
-          <div class="catalog-meta">
-            <span class="catalog-date">2026</span>
-            <span class="catalog-type">Custom</span>
-          </div>
-        </div>
-      </div>
+    <div class="catalog-grid showcase-mode" id="catalogGrid">
+      <!-- Katalog item akan diisi oleh JavaScript -->
     </div>
   </div>
 
@@ -331,6 +223,48 @@
     ▶ Play Musik
   </button>
 
+  <!-- CATALOG DETAIL MODAL -->
+  <div class="modal-overlay catalog-detail-modal" id="catalogDetailModal">
+    <div class="modal-content catalog-modal-content" role="dialog" aria-modal="true">
+      <button class="modal-close" onclick="closeCatalogDetail()">×</button>
+      
+      <div class="catalog-detail-container">
+        <!-- Image Preview (Draggable) -->
+        <div class="catalog-detail-image">
+          <div class="draggable-image-wrapper" id="draggableWrapper">
+            <img id="detailImage" src="" alt="Detail">
+            <div class="drag-hint">🖱️ Geser gambar</div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="catalog-detail-content">
+          <div class="catalog-detail-header">
+            <h2 id="detailTitle">Judul Item</h2>
+            <span class="catalog-detail-badge" id="detailBadge">Badge</span>
+          </div>
+
+          <p class="catalog-detail-desc" id="detailDesc">Deskripsi item...</p>
+
+          <div class="catalog-detail-meta">
+            <span class="detail-meta-item">📅 <span id="detailYear">2026</span></span>
+            <span class="detail-meta-item">🏷️ <span id="detailType">Category</span></span>
+          </div>
+
+          <div class="catalog-detail-actions">
+            <button class="btn-detail-checkout" onclick="checkoutItem()">
+              💬 Hubungi via WhatsApp
+            </button>
+            <button class="btn-detail-close" onclick="closeCatalogDetail()">
+              Tutup
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDF PREVIEW MODAL -->
   <div class="modal-overlay" id="previewModal" aria-hidden="true">
     <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
       <button class="modal-close" id="closePreview" aria-label="Tutup preview">×</button>
